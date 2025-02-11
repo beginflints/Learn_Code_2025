@@ -2,10 +2,9 @@
 /shelf/
 /workspace.xml
 # Rider ignored files
-/contentModel.xml
 /modules.xml
+/contentModel.xml
 /projectSettingsUpdater.xml
-/.idea.Learn_Code_2025.iml
 # Editor-based HTTP Client requests
 /httpRequests/
 # Datasource local storage ignored files
