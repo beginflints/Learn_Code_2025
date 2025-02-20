@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Learn_Code_2025")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+040886e3ce1aca9d30e0f922b2d59354212f11bb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c2fd143da6facfd383260ff0421df177fa2db71d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Learn_Code_2025")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Learn_Code_2025")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
