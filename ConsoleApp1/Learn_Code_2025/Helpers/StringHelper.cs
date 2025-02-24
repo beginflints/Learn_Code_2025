@@ -6,4 +6,19 @@ public static class StringHelper
     {
         return text.ToUpper() + "Special";
     }
+    
+    public static void MyMethod(object fname) 
+    {
+        Console.WriteLine(fname + " Refsnes");
+    }
+    
+    public static void MyMethod(string child1, string child2, string child3) 
+    {
+        Console.WriteLine("The youngest child is: " + child3);
+    }
+    
+    public static void MyMethod(string child1) 
+    {
+        Console.WriteLine("The youngest child is: ");
+    }
 }
