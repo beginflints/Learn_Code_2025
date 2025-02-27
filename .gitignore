@@ -1,4 +1,4 @@
 **/obj/
 **/bin/
 **/.idea/
-ConsoleApp1/ConsoleApp1.sln.DotSettings.user
+*.sln.DotSettings.user
