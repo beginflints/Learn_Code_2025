@@ -1,1 +1,3 @@
-/ConsoleApp1/Learn_Code_2025/obj/
+**/obj/
+**/bin/
+**/.idea/
