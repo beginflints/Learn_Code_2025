@@ -1,0 +1,6 @@
+@WebApp_Ray_HostAddress = http://localhost:5171
+
+GET {{WebApp_Ray_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
