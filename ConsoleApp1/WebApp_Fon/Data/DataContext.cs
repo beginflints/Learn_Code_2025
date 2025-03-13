@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using WebApp_Fon.Model;
 
-namespace TestDb1.Data;
+namespace WebApp_Fon.Data;
 
 public class DataContext : DbContext
 {

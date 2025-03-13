@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using TestDb1.Data;
+using WebApp_Fon.Data;
 
 #nullable disable
 
 namespace WebApp_Fon.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250310122409_Initial")]
+    [Migration("20250312121517_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
