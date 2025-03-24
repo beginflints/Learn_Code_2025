@@ -6,8 +6,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDb1", "TestDb1\TestDb1.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp_Fon", "WebApp_Fon\WebApp_Fon.csproj", "{6B23E35B-3ACA-4314-BBCD-1FE47D40577E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp_Ray", "WebApp_Ray\WebApp_Ray.csproj", "{03B999B2-DE01-4F6A-8D03-C588D976FBA8}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,9 +24,5 @@ Global
 		{6B23E35B-3ACA-4314-BBCD-1FE47D40577E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B23E35B-3ACA-4314-BBCD-1FE47D40577E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B23E35B-3ACA-4314-BBCD-1FE47D40577E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{03B999B2-DE01-4F6A-8D03-C588D976FBA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{03B999B2-DE01-4F6A-8D03-C588D976FBA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{03B999B2-DE01-4F6A-8D03-C588D976FBA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{03B999B2-DE01-4F6A-8D03-C588D976FBA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
