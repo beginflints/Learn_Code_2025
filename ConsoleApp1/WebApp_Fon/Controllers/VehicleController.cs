@@ -56,7 +56,9 @@ public class VehicleController : ControllerBase
             {
                 Id = Guid.NewGuid(),
                 Brand = vehicle.Brand,
-                ReleaseDate = vehicle.ReleaseDate
+                ReleaseDate = vehicle.ReleaseDate,
+                Engine = vehicle.Engine,
+                Model = vehicle.Model
 
             };
             await _context.Vehicles.AddAsync(newvehicle);
@@ -115,4 +117,67 @@ public class VehicleController : ControllerBase
                 return BadRequest(e.InnerException);
             }
         }
+
+    [HttpPut("{brand}")]
+    public async Task<IActionResult> Update(string brand, VehicleDto vehicle)
+    {
+        var vehicleToUpdate = await _context.Vehicles.FirstOrDefaultAsync(a => a.Brand == brand);
+        if (vehicleToUpdate == null) return NotFound("Not found");
+        vehicleToUpdate.Brand = vehicle.Brand;
+        vehicleToUpdate.ReleaseDate = vehicle.ReleaseDate;
+        
+        await _context.SaveChangesAsync();
+        return NoContent();
+    }
+    [HttpPost]
+    public async Task<IActionResult> Creates(List<VehicleDto> vehicles)
+    {
+        try
+        {
+            //linq
+            var newvehicles = vehicles.Select(a => new Vehicle()
+                { Brand = a.Brand, ReleaseDate = a.ReleaseDate }).ToList();
+            
+            await _context.Vehicles.AddRangeAsync(newvehicles);
+            await _context.SaveChangesAsync();
+            
+            //for each
+            var newvehicles2 = new List<Vehicle>();
+            foreach (var v in newvehicles)
+            {
+                var newvehicle = new Vehicle()
+                {
+                    Brand = v.Brand,
+                    ReleaseDate = v.ReleaseDate
+                };
+                newvehicles2.Add(newvehicle);
+            }
+            await _context.Vehicles.AddRangeAsync(newvehicles2);
+            await _context.SaveChangesAsync();
+            
+            return Ok(newvehicles);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return BadRequest(e.InnerException);
+        }
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> DeleteAll()
+    {
+        try
+        {
+            await _context.Vehicles.ExecuteDeleteAsync();
+            return NoContent();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return BadRequest(e.InnerException);
+        }
+        
+    }
+    
     }
