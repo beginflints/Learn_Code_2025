@@ -79,6 +79,53 @@ public class VehicleController : ControllerBase
     }
 
     [HttpPost]
+    public async Task<IActionResult> Creates(List<VehicleDto> vehicles)
+    {
+        try
+        {
+            // #1 LINQ-expression 
+            var newVehicles = vehicles.Select(a => new Vehicle() 
+                    { Brand = a.Brand, ReleasedDate = a.ReleasedDate })
+                .ToList();
+            
+            // var newVehiclesA = vehicles.Select(a => new Vehicle() 
+            //         { Brand = a.Brand, ReleasedDate = a.ReleasedDate })
+            //     .ToArray();
+            //
+            // var newVehiclesH = vehicles.Select(a => new Vehicle() 
+            //         { Brand = a.Brand, ReleasedDate = a.ReleasedDate })
+            //     .ToHashSet();
+
+            await _context.AddRangeAsync(newVehicles);
+            await _context.SaveChangesAsync();
+            
+            // #2 foreach
+            var newVehicles2 = new List<Vehicle>();
+            foreach (var v in vehicles)
+            {
+                var newVehicle = new Vehicle()
+                {
+                    Brand = v.Brand,
+                    ReleasedDate = v.ReleasedDate,
+                };
+                
+                newVehicles2.Add(newVehicle);
+            }
+            
+            await _context.AddRangeAsync(newVehicles2);
+            await _context.SaveChangesAsync();
+            
+            return Ok(newVehicles);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return BadRequest(e.Message);
+        }
+    }
+    
+
+    [HttpPost]
     public async Task<IActionResult> CreateWithValidate(VehicleDto vehicle)
     {
         try
@@ -104,7 +151,31 @@ public class VehicleController : ControllerBase
         }
     }
 
-    [HttpDelete("name")]
+    [HttpPut("{brand}")]
+    public async Task<IActionResult> Update(string brand, VehicleDto vehicle)
+    {
+        // ดึงค่ามาจาก Database
+        // Update ค่า
+        // Save
+        // Return
+        
+        // ดึงค่ามาจาก Database
+        var modelUpdate = await _context.Vehicles.FirstOrDefaultAsync(a => a.Brand == brand);
+        if (modelUpdate is null) return NotFound($"Brand {brand} does not exist");
+        
+        // Update
+        modelUpdate.Brand = vehicle.Brand;
+        modelUpdate.ReleasedDate = vehicle.ReleasedDate;
+        
+        // Save
+        await _context.SaveChangesAsync();
+
+        // Return
+        return NoContent();
+    }
+
+
+    [HttpDelete("{name}")]
     public async Task<IActionResult> Delete(string name)
     {
         try
@@ -114,10 +185,10 @@ public class VehicleController : ControllerBase
 
             //Bulk Delete
             // await _context.Vehicles.Where(a => a.Brand == name).ExecuteDeleteAsync();
-            
+
             _context.Vehicles.Remove(model);
             await _context.SaveChangesAsync();
-            
+
             return NoContent();
         }
         catch (Exception e)
@@ -127,4 +198,19 @@ public class VehicleController : ControllerBase
         }
     }
     
+    [HttpDelete]
+    public async Task<IActionResult> DeleteAll()
+    {
+        try
+        {
+            await _context.Vehicles.ExecuteDeleteAsync();
+
+            return NoContent();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return BadRequest(e.InnerException);
+        }
+    }
 }
