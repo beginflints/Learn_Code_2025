@@ -10,5 +10,7 @@ public class Vehicle
     
     public string? Color { get; set; }
     
+    public string? Speed { get; set; }
+    
     
 }
