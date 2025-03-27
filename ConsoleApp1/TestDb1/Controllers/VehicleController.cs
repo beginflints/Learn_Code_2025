@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TestDb1.Data;
-using TestDb1.ModelDtos;
-using TestDb1.Models;
+using WebApp_Shared.Model;
+using WebApp_Shared.ModelDto;
 
 namespace TestDb1.Controllers;
 
