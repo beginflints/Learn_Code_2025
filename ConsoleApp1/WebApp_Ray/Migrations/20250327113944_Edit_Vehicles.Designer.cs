@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApp_Ray.Data;
 
@@ -10,14 +11,16 @@ using WebApp_Ray.Data;
 namespace WebApp_Ray.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20250327113944_Edit_Vehicles")]
+    partial class Edit_Vehicles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.3");
 
-            modelBuilder.Entity("WebApp_Shared.Model.Vehicle", b =>
+            modelBuilder.Entity("WebApp_Ray.Model.Vehicle", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -33,9 +36,6 @@ namespace WebApp_Ray.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("ReleasedDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("RoofColor")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

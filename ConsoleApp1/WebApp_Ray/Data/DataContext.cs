@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using WebApp_Ray.Model;
+
+using WebApp_Shared.Model;
 
 namespace WebApp_Ray.Data;
 

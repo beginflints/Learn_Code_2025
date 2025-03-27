@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApp_Ray.Data;
-using WebApp_Ray.Model;
-using WebApp_Ray.ModelDto;
+using WebApp_Shared.Model;
+using WebApp_Shared.ModelDto;
+
 
 namespace WebApp_Ray.Controllers;
 
