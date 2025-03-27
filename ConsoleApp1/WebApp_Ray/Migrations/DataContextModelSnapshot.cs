@@ -26,6 +26,9 @@ namespace WebApp_Ray.Migrations
                     b.Property<string>("Brand")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Color")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Engine")
                         .HasColumnType("TEXT");
 
@@ -35,7 +38,7 @@ namespace WebApp_Ray.Migrations
                     b.Property<DateTime>("ReleasedDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("RoofColor")
+                    b.Property<string>("Speed")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
