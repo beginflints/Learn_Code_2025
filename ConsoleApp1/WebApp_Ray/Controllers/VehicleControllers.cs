@@ -101,7 +101,7 @@ public class VehicleController : ControllerBase
             var model = await _context.Vehicles.FirstOrDefaultAsync(a=>a.Brand == name);
             if(model == null) return NotFound();
             //Bluk Delete
-            await _context.Vehicles.Where(a.=>a.Brand==name).ExecuteDeleteAsynce();
+            await _context.Vehicles.Where(a=>a.Brand==name).ExecuteDeleteAsync();
             //_context.Vehicles.Remove(model);
             await _context.SaveChangesAsync();
             return NoContent();
@@ -112,5 +112,66 @@ public class VehicleController : ControllerBase
             Console.WriteLine(e);
             throw;
         }
+    }
+	[HttpPut("{brand}")]
+    public async Task<IActionResult> Update(string brand, VehicleDto vehicle)
+    {
+        var vehicleToUpdate = await _context.Vehicles.FirstOrDefaultAsync(a => a.Brand == brand);
+        if (vehicleToUpdate == null) return NotFound("Not found");
+        vehicleToUpdate.Brand = vehicle.Brand;
+        vehicleToUpdate.ReleasedDate = vehicle.ReleasedDate;
+        
+        await _context.SaveChangesAsync();
+        return NoContent();
+    }
+    [HttpPost]
+    public async Task<IActionResult> Creates(List<VehicleDto> vehicles)
+    {
+        try
+        {
+            //linq
+            var newvehicles = vehicles.Select(a => new Vehicle()
+                { Brand = a.Brand, ReleasedDate = a.ReleasedDate }).ToList();
+            
+            await _context.Vehicles.AddRangeAsync(newvehicles);
+            await _context.SaveChangesAsync();
+            
+            //for each
+            var newvehicles2 = new List<Vehicle>();
+            foreach (var v in newvehicles)
+            {
+                var newvehicle = new Vehicle()
+                {
+                    Brand = v.Brand,
+                    ReleasedDate = v.ReleasedDate
+                };
+                newvehicles2.Add(newvehicle);
+            }
+            await _context.Vehicles.AddRangeAsync(newvehicles2);
+            await _context.SaveChangesAsync();
+            
+            return Ok(newvehicles);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return BadRequest(e.InnerException);
+        }
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> DeleteAll()
+    {
+        try
+        {
+            await _context.Vehicles.ExecuteDeleteAsync();
+            return NoContent();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return BadRequest(e.InnerException);
+        }
+        
     }
 }
