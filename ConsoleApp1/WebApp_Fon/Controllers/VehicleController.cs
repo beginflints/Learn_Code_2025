@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApp_Fon.Data;
-using WebApp_Fon.Model;
-using WebApp_Fon.ModelDto;
+using WebApp_Shared.Model;
+using WebApp_Shared.ModelDto;
+
 
 namespace WebApp_Fon.Controllers;
 
@@ -56,7 +57,7 @@ public class VehicleController : ControllerBase
             {
                 Id = Guid.NewGuid(),
                 Brand = vehicle.Brand,
-                ReleaseDate = vehicle.ReleaseDate,
+                ReleasedDate = vehicle.ReleasedDate,
                 Engine = vehicle.Engine,
                 Model = vehicle.Model
 
@@ -82,7 +83,7 @@ public class VehicleController : ControllerBase
             Vehicle newvehicle = new()
             {
                 Brand = vehicle.Brand,
-                ReleaseDate = vehicle.ReleaseDate
+                ReleasedDate = vehicle.ReleasedDate
 
             };
             await _context.Vehicles.AddAsync(newvehicle);
@@ -124,7 +125,7 @@ public class VehicleController : ControllerBase
         var vehicleToUpdate = await _context.Vehicles.FirstOrDefaultAsync(a => a.Brand == brand);
         if (vehicleToUpdate == null) return NotFound("Not found");
         vehicleToUpdate.Brand = vehicle.Brand;
-        vehicleToUpdate.ReleaseDate = vehicle.ReleaseDate;
+        vehicleToUpdate.ReleasedDate = vehicle.ReleasedDate;
         
         await _context.SaveChangesAsync();
         return NoContent();
@@ -136,7 +137,7 @@ public class VehicleController : ControllerBase
         {
             //linq
             var newvehicles = vehicles.Select(a => new Vehicle()
-                { Brand = a.Brand, ReleaseDate = a.ReleaseDate }).ToList();
+                { Brand = a.Brand, ReleasedDate = a.ReleasedDate }).ToList();
             
             await _context.Vehicles.AddRangeAsync(newvehicles);
             await _context.SaveChangesAsync();
@@ -148,7 +149,7 @@ public class VehicleController : ControllerBase
                 var newvehicle = new Vehicle()
                 {
                     Brand = v.Brand,
-                    ReleaseDate = v.ReleaseDate
+                    ReleasedDate = v.ReleasedDate
                 };
                 newvehicles2.Add(newvehicle);
             }

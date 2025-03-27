@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using WebApp_Fon.Model;
+using WebApp_Shared.Model;
 
 namespace WebApp_Fon.Data;
 
