@@ -15,15 +15,18 @@ namespace TestDb1.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "9.0.2");
+            modelBuilder.HasAnnotation("ProductVersion", "9.0.3");
 
-            modelBuilder.Entity("TestDb1.Models.Vehicle", b =>
+            modelBuilder.Entity("WebApp_Shared.Model.Vehicle", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Brand")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Color")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Engine")
@@ -33,6 +36,9 @@ namespace TestDb1.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("ReleasedDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Speed")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
