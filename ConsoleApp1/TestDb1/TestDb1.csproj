@@ -19,4 +19,8 @@
       <Folder Include="DB\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\WebApp_Shared\WebApp_Shared.csproj" />
+    </ItemGroup>
+
 </Project>
