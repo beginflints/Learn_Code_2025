@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp_Ray", "WebApp_Ray\We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp_Shared", "WebApp_Shared\WebApp_Shared.csproj", "{BF542456-3849-4BD0-837E-E85EB7AA6D35}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp_Fon", "BlazorApp_Fon\BlazorApp_Fon.csproj", "{3BADA75E-D237-48A6-A641-1017A2F4E528}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{BF542456-3849-4BD0-837E-E85EB7AA6D35}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF542456-3849-4BD0-837E-E85EB7AA6D35}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF542456-3849-4BD0-837E-E85EB7AA6D35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BADA75E-D237-48A6-A641-1017A2F4E528}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BADA75E-D237-48A6-A641-1017A2F4E528}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BADA75E-D237-48A6-A641-1017A2F4E528}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BADA75E-D237-48A6-A641-1017A2F4E528}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
