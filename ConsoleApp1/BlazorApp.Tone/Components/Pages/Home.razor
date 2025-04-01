@@ -9,3 +9,45 @@ Welcome to your new app.
 <h1 style="background-color:DodgerBlue; font-size: 24px;">Hello World</h1>
 <h1 class="bg-blue">Hello World CSS</h1>
 <p style="background-color:Tomato;">Lorem ipsum...</p>
+
+<MudButton Variant="Variant.Filled" Color="Color.Primary" DropShadow>
+    Button
+</MudButton>
+
+<MudButton Variant="Variant.Filled" Size="Size.Small"  Color="Color.Primary">Small</MudButton>
+<MudButton Variant="Variant.Filled" Size="Size.Medium" Color="Color.Secondary">Medium</MudButton>
+<MudButton Variant="Variant.Filled" Size="Size.Large"  Color="Color.Tertiary">Large</MudButton>
+<MudButton Variant="Variant.Filled" Color="Color.Primary" FullWidth="true">Full Width Button</MudButton>
+
+<MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Delete" Color="Color.Error">Delete</MudButton>
+<MudButton Variant="Variant.Filled" EndIcon="@Icons.Material.Filled.Send" Color="Color.Primary">Send</MudButton>
+<MudButton Variant="Variant.Filled" StartIcon="@Icons.Custom.Uncategorized.Radioactive" Color="Color.Warning">Warning</MudButton>
+<MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Mic" IconColor="Color.Error">Talk</MudButton>
+<MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Save" Color="Color.Info"  Size="Size.Small">Save</MudButton>
+<MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Save" IconColor="Color.Secondary" Size="Size.Large">Save</MudButton>
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+<button class="bg-blue-500 px-4 py-3 rounded-lg text-white">
+    <p>Button</p>
+</button>
+
+<button class="bg-black px-4 py-3 rounded-full text-white">
+    <p>Packing List (INV&Trade)</p>
+</button>
+
+<MudPaper Class="pa-4" Style="@($"color:{Theme.PaletteLight.Dark}; background:{Theme.PaletteLight.Warning};")">
+    Warning with Dark text
+</MudPaper>
+
+<MudButton Class="pa-4" Style="@($"color:{Colors.Shades.White}; background:{Colors.Shades.Black}; border-radius: 9999px;")">
+    Packing List (INV&Trade)
+</MudButton>
+
+@code
+{
+    private MudTheme Theme = new MudTheme();
+}
