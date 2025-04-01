@@ -10,4 +10,8 @@
       <Folder Include="Components\Shared Components\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="MudBlazor" Version="8.5.1" />
+    </ItemGroup>
+
 </Project>
