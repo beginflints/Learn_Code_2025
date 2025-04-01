@@ -1,10 +1,13 @@
 using BlazorApp.Tone.Components;
+using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddMudServices();
 
 var app = builder.Build();
 
@@ -25,3 +28,5 @@ app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode();
 
 app.Run();
+
+// npx tailwindcss@3.4.17 -i ./Styles/app.css -o ./wwwroot/css/tailwind.css --watch
