@@ -1,0 +1,31 @@
+@page "/VehiclePage"
+@using WebApp_Shared.Model
+
+<h3>VehiclePage</h3>
+
+@code {
+
+    private List<Vehicle> vehicles { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var httpclient = new HttpClient()
+        {
+            BaseAddress = new Uri("https://localhost:7269/api/")
+        };
+        
+        try
+        {
+            vehicles = await httpclient.GetFromJsonAsync<List<Vehicle>>("Vehicle/GetAll") ?? new List<Vehicle>();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error fetching vehicles: {ex.Message}");
+        }
+        
+        await base.OnInitializedAsync();
+    }
+
+    
+    
+}
