@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp_Fon", "BlazorApp_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp.Tone", "BlazorApp.Tone\BlazorApp.Tone.csproj", "{B08D4CAE-9599-49CD-8DBF-BC2C9470C106}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp.Ray", "BlazorApp.Ray\BlazorApp.Ray.csproj", "{AEAE6F84-69F5-4075-BDBD-35E8C5AD3715}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,5 +50,9 @@ Global
 		{B08D4CAE-9599-49CD-8DBF-BC2C9470C106}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B08D4CAE-9599-49CD-8DBF-BC2C9470C106}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B08D4CAE-9599-49CD-8DBF-BC2C9470C106}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEAE6F84-69F5-4075-BDBD-35E8C5AD3715}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEAE6F84-69F5-4075-BDBD-35E8C5AD3715}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEAE6F84-69F5-4075-BDBD-35E8C5AD3715}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEAE6F84-69F5-4075-BDBD-35E8C5AD3715}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

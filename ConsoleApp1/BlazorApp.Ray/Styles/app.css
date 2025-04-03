@@ -1,0 +1,13 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+
+    .btn-base{
+        @apply font-semibold py-2 px-4 rounded-lg w-fit;
+        @apply ease-in-out transition cursor-pointer;
+        @apply min-w-24;
+    }
+    
+}
