@@ -10,4 +10,10 @@
         @apply min-w-24;
     }
     
+    .Section{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
 }
