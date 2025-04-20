@@ -14,11 +14,11 @@
     <!--Mudblazor-->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet" />
-    <HeadOutlet/>
+    <HeadOutlet @rendermode="InteractiveServer"/>
 </head>
 
 <body>
-<Routes/>
+<Routes @rendermode="InteractiveServer"/>
 <script src="_content/MudBlazor/MudBlazor.min.js"></script>
 <script src="_framework/blazor.web.js"></script>
 </body>
