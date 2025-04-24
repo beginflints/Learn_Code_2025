@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TestDb1.Data;
@@ -66,6 +67,33 @@ public class VehicleController : ControllerBase
                 ReleasedDate = vehicle.ReleasedDate,
             };
 
+            await _context.AddAsync(newVehicle);
+            await _context.SaveChangesAsync();
+
+            return Ok(vehicle);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return BadRequest(e.InnerException);
+        }
+    }
+    
+    [HttpPost]
+    public async Task<IActionResult> CreateV2(object obj)
+    {
+        try
+        {
+            var vehicle = JsonSerializer.Deserialize<VehicleDto>(obj.ToString()) ?? new VehicleDto();
+
+            var newVehicle = new Vehicle()
+            {
+                Brand = vehicle.Brand,
+                ReleasedDate = vehicle.ReleasedDate,
+                Engine = vehicle.Engine,
+                Model = vehicle.Model
+            };
+            
             await _context.AddAsync(newVehicle);
             await _context.SaveChangesAsync();
 

@@ -1,12 +1,28 @@
 @page "/VehiclePage"
-@using WebApp_Shared.Model
+@using System.Text.Json
+@using WebApp_Shared.ModelDto
+
+@inject NavigationManager NavigationManager
 
 <h3>VehiclePage</h3>
+
+@foreach (var vehicle in vehicles)
+{
+    <li>@vehicle.Model - @vehicle.Brand - @vehicle.Color</li>
+}
+
+<MudTextField Label="Brand" @bind-Value="vehicleCreate.Brand"/>
+<MudTextField Label="Model" @bind-Value="vehicleCreate.Model"/>
+<MudTextField Label="Engine" @bind-Value="vehicleCreate.Engine"/>
+
+<MudButton StartIcon="@Icons.Material.Rounded.Send" Color="Color.Info" OnClick="@CreateVehicle">Create</MudButton>
 
 @code {
 
     private List<Vehicle> vehicles { get; set; } = new();
 
+    VehicleDto vehicleCreate { get; set; } = new();
+    
     protected override async Task OnInitializedAsync()
     {
         var httpclient = new HttpClient()
@@ -26,6 +42,25 @@
         await base.OnInitializedAsync();
     }
 
-    
-    
+    private async Task CreateVehicle()
+    {
+        var httpclient = new HttpClient()
+        {
+            BaseAddress = new Uri("https://localhost:7269/api/")
+        };
+        
+        try
+        {
+            var json = JsonSerializer.Serialize(vehicleCreate);
+            var result = await httpclient.PostAsJsonAsync("Vehicle/CreateV2", json);
+            if (result.IsSuccessStatusCode)
+            {
+                NavigationManager.NavigateTo("VehiclePage",true);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error fetching vehicles: {ex.Message}");
+        }
+    }
 }
