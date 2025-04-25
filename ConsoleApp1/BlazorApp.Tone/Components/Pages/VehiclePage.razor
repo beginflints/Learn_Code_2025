@@ -11,9 +11,14 @@
     <li>@vehicle.Model - @vehicle.Brand - @vehicle.Color</li>
 }
 
-<MudTextField Label="Brand" @bind-Value="vehicleCreate.Brand"/>
-<MudTextField Label="Model" @bind-Value="vehicleCreate.Model"/>
-<MudTextField Label="Engine" @bind-Value="vehicleCreate.Engine"/>
+<MudTextField Label="Brand" @bind-Value="vehicleCreate.Brand" Immediate="true"/>
+<MudTextField Label="Model" @bind-Value="vehicleCreate.Model" />
+<MudTextField Label="Engine" @bind-Value="vehicleCreate.Engine" DebounceInterval="500" />
+
+<MudTextField Label="Brand" Value="vehicleCreate.Brand" ValueChanged="BrandChanged" T="string"/>
+<MudTextField Label="Model" Value="vehicleCreate.Model"/>
+<MudTextField Label="Engine" Value="vehicleCreate.Engine"/>
+<MudTextField Label="Color" Value="vehicleCreate.Color"/>
 
 <MudButton StartIcon="@Icons.Material.Rounded.Send" Color="Color.Info" OnClick="@CreateVehicle">Create</MudButton>
 
@@ -62,5 +67,10 @@
         {
             Console.WriteLine($"Error fetching vehicles: {ex.Message}");
         }
+    }
+
+    private async Task BrandChanged(string brand)
+    {
+        vehicleCreate.Brand = brand;
     }
 }
