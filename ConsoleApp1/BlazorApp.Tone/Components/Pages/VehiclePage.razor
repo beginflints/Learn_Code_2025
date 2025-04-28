@@ -11,9 +11,39 @@
     <li>@vehicle.Model - @vehicle.Brand - @vehicle.Color</li>
 }
 
+<MudTable Items="vehicles" Hover="true" Breakpoint="Breakpoint.Sm" Loading="Loading" LoadingProgressColor="Color.Info">
+    <HeaderContent>
+        <MudTh>No.</MudTh>
+        <MudTh>
+            <MudTableSortLabel SortBy="new Func<Vehicle, object>(x => x.Model)">Model</MudTableSortLabel>
+        </MudTh>
+        <MudTh>
+            <MudTableSortLabel SortBy="new Func<Vehicle, object>(x => x.Brand)">Brand</MudTableSortLabel>
+        </MudTh>
+        <MudTh>
+            <MudTableSortLabel SortBy="new Func<Vehicle, object>(x => x.Color)">Color</MudTableSortLabel>
+        </MudTh>
+        <MudTh>
+            <MudTableSortLabel SortBy="new Func<Vehicle, object>(x => x.Engine)">Engine</MudTableSortLabel>
+        </MudTh>
+        <MudTh></MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="No.">@(vehicles.IndexOf(context) + 1)</MudTd>
+        <MudTd DataLabel="Model">@context.Model</MudTd>
+        <MudTd DataLabel="Brand">@context.Brand</MudTd>
+        <MudTd DataLabel="Color">@context.Color</MudTd>
+        <MudTd DataLabel="Engine">@context.Engine</MudTd>
+        <MudTd><MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Error" aria-label="delete" OnClick="@(e=>DeleteVehicle(context))"/></MudTd>
+    </RowTemplate>
+    <PagerContent>
+        <MudTablePager PageSizeOptions="new int[] { 10, 25, 50, 100 }"/>
+    </PagerContent>
+</MudTable>
+
 <MudTextField Label="Brand" @bind-Value="vehicleCreate.Brand" Immediate="true"/>
-<MudTextField Label="Model" @bind-Value="vehicleCreate.Model" />
-<MudTextField Label="Engine" @bind-Value="vehicleCreate.Engine" DebounceInterval="500" />
+<MudTextField Label="Model" @bind-Value="vehicleCreate.Model"/>
+<MudTextField Label="Engine" @bind-Value="vehicleCreate.Engine" DebounceInterval="500"/>
 
 <MudTextField Label="Brand" Value="vehicleCreate.Brand" ValueChanged="BrandChanged" T="string"/>
 <MudTextField Label="Model" Value="vehicleCreate.Model"/>
@@ -26,15 +56,17 @@
 
     private List<Vehicle> vehicles { get; set; } = new();
 
+    private bool Loading { get; set; }
+
     VehicleDto vehicleCreate { get; set; } = new();
-    
+
     protected override async Task OnInitializedAsync()
     {
         var httpclient = new HttpClient()
         {
             BaseAddress = new Uri("https://localhost:7269/api/")
         };
-        
+
         try
         {
             vehicles = await httpclient.GetFromJsonAsync<List<Vehicle>>("Vehicle/GetAll") ?? new List<Vehicle>();
@@ -43,7 +75,7 @@
         {
             Console.WriteLine($"Error fetching vehicles: {ex.Message}");
         }
-        
+
         await base.OnInitializedAsync();
     }
 
@@ -53,14 +85,14 @@
         {
             BaseAddress = new Uri("https://localhost:7269/api/")
         };
-        
+
         try
         {
             var json = JsonSerializer.Serialize(vehicleCreate);
             var result = await httpclient.PostAsJsonAsync("Vehicle/CreateV2", json);
             if (result.IsSuccessStatusCode)
             {
-                NavigationManager.NavigateTo("VehiclePage",true);
+                NavigationManager.NavigateTo("VehiclePage", true);
             }
         }
         catch (Exception ex)
@@ -72,5 +104,27 @@
     private async Task BrandChanged(string brand)
     {
         vehicleCreate.Brand = brand;
+    }
+
+    private async Task DeleteVehicle(Vehicle vehicle)
+    {
+        var httpclient = new HttpClient()
+        {
+            BaseAddress = new Uri("https://localhost:7269/api/")
+        };
+        
+        try
+        {
+            // var json = JsonSerializer.Serialize(vehicleCreate);
+            var result = await httpclient.DeleteAsync($"Vehicle/DeleteById/{vehicle.Id}");
+            if (result.IsSuccessStatusCode)
+            {
+                NavigationManager.NavigateTo("VehiclePage", true);
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error fetching vehicles: {ex.Message}");
+        }
     }
 }

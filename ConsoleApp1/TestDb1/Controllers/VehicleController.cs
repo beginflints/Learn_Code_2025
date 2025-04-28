@@ -227,6 +227,29 @@ public class VehicleController : ControllerBase
         }
     }
     
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteById(Guid id)
+    {
+        try
+        {
+            var model = await _context.Vehicles.FirstOrDefaultAsync(a => a.Id == id);
+            if (model == null) return NotFound();
+
+            //Bulk Delete
+            // await _context.Vehicles.Where(a => a.Brand == name).ExecuteDeleteAsync();
+
+            _context.Vehicles.Remove(model);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return BadRequest(e.InnerException);
+        }
+    }
+    
     [HttpDelete]
     public async Task<IActionResult> DeleteAll()
     {
